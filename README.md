@@ -51,10 +51,10 @@ CoNSoL-TakeOff bridges the gap by treating drawing geometry as **first-class bus
 
 | Component | Purpose | Documentation |
 |-----------|---------|----------------|
-| **Domain** | Data entities, geometry utilities, business definitions | [Domain/README.md](Domain/README.md) |
-| **Application** | Use case orchestration, calculation engine, services | [Application/README.md](Application/README.md) |
-| **Infrastructure** | Configuration, logging, persistence, security | [Infrastructure/README.md](Infrastructure/README.md) |
-| **Desktop** | WinForms UI, canvas rendering, tool interaction | [Desktop/README.md](Desktop/README.md) |
+| **Domain** | Data entities, geometry utilities, business definitions | [Domain/README.md](Domain%20README.md) |
+| **Application** | Use case orchestration, calculation engine, services | [Application/README.md](Application%20README.md) |
+| **Infrastructure** | Configuration, logging, persistence, security | [Infrastructure/README.md](Infrastructure%20README.md) |
+| **Desktop** | WinForms UI, canvas rendering, tool interaction | [Desktop/README.md](Desktop%20README.md) |
 
 ---
 
