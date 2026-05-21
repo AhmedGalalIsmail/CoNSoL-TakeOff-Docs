@@ -1,6 +1,3 @@
----
-color: var(--mk-color-pink)
----
 # SDLC Document Library
 
 ---
@@ -29,11 +26,11 @@ color: var(--mk-color-pink)
 
 # 01 — Inception
 
-## 🧠 0101 — Requirement Analysis ^0101
+## 🧠 0101 — Requirement Analysis 
 
 ---
 
-## 🎯 Purpose ^010100
+## 🎯 Purpose 
 
 Define the **business vision, product scope, users, and success criteria** for the CoNSoL platform and its flagship application, **CoNSoL‑TakeOff**.
 
@@ -47,7 +44,7 @@ This document answers:
 	
 ---
 
-## 🏗️ 1. What is CoNSoL? ^010101
+## 🏗️ 1. What is CoNSoL? 
 
 **CoNSoL (Construction Solution)** is a **modular construction management platform** designed around a hub‑and‑spoke architecture.
 
@@ -77,7 +74,7 @@ This document answers:
 
 ---
 
-## 🧱 2. What is CoNSoL‑TakeOff? ^010102
+## 🧱 2. What is CoNSoL‑TakeOff? 
 
 **CoNSoL‑TakeOff** is a **visual-first construction take‑off and estimation tool**.
 
@@ -117,7 +114,7 @@ Users **draw construction elements visually**, and those drawings are treated as
 
 ---
 
-## ❗ 3. Problem Statement ^010103
+## ❗ 3. Problem Statement 
 
 ### Current Pain Points
 	
@@ -138,7 +135,7 @@ Users **draw construction elements visually**, and those drawings are treated as
 
 ---
 
-## ✅ 4. Proposed Solution ^010104
+## ✅ 4. Proposed Solution 
 
 CoNSoL‑TakeOff provides:
 	
@@ -150,7 +147,7 @@ CoNSoL‑TakeOff provides:
 	
 ---
 
-## 👥 5. Target Users ^010105
+## 👥 5. Target Users 
 
 ### Primary Users
 	
@@ -166,7 +163,7 @@ CoNSoL‑TakeOff provides:
 	
 ---
 
-## 🔄 6. High-Level User Workflow ^010106
+## 🔄 6. High-Level User Workflow 
 
 ```text
 Setup → Draw → Define → Store → Calculate → Report
@@ -180,7 +177,7 @@ Where:
 
 ---
 
-## 🧩 7. Core Concepts ^010107
+## 🧩 7. Core Concepts 
 
 ### 7.1 Dimension Modes
 
@@ -203,7 +200,7 @@ Each drawn object uses **exactly one dimension mode**.
 	
 ---
 
-## 📦 8. Scope ^010108
+## 📦 8. Scope 
 
 ### ✅ In Scope (v1 / Demo)
 	
@@ -224,7 +221,7 @@ Each drawn object uses **exactly one dimension mode**.
 	
 ---
 
-## 📊 9. Success Criteria ^010109
+## 📊 9. Success Criteria 
 
 ### Demo Success
 	
@@ -243,7 +240,7 @@ Each drawn object uses **exactly one dimension mode**.
 
 ---
 
-## ⚠️ 10. Assumptions & Constraints ^010110
+## ⚠️ 10. Assumptions & Constraints 
 
 
 ### Assumptions
@@ -260,7 +257,7 @@ Each drawn object uses **exactly one dimension mode**.
 
 ---
 
-## 🔗 Related Documents ^010111
+## 🔗 Related Documents 
 
 - [[CoNSoL-Documents-Library-V2/MegaFile/01-Inception/0102-Planning|0102-Planning]]
 - [[CoNSoL-Documents-Library-V2/MegaFile/02-Design/020101-System Context|0201-Design_Documentation]]
@@ -273,20 +270,20 @@ Each drawn object uses **exactly one dimension mode**.
 
 
 ---
-## 🗓️ 0102 — Planning ^0102
+## 🗓️ 0102 — Planning 
 
 
 **Type:** 📋 Living plan  
 **Filled by:** Project Manager
 
 ✅ Standard structure (tables only):
-### Roadmap ^010201
+### Roadmap 
 
 | Phase | Scope | Owner | Target |
 | ----- | ----- | ----- | ------ |
 |       |       |       |        |
 
-### Risks ^010202
+### Risks 
 
 | Risk | Probability | Impact | Mitigation |
 | ---- | ----------- | ------ | ---------- |
@@ -607,7 +604,7 @@ Engine (UI‑free)
 | Related FR   | FR-DT-001, FR-DT-002, FR-CV-007, FR-CV-008, FR-UI-011, FR-UI-013  |
 | Precondition | A drawing is open; at least one layer exists and is set as active |
 | Trigger      | User clicks the Line tool in the toolbox                          |
-##### Flowchart ^FC1
+##### Flowchart 
 
 ```mermaid
 %%{init: {
@@ -684,7 +681,7 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 	Q --> R
 ```
 
-##### Main Flow ^MF1
+##### Main Flow 
 1. User clicks the **`Line`** tool
 2. System sets cursor to _`crosshair`_; property panel switches to tool defaults
 3. User clicks **`Point1`** on the canvas
@@ -700,7 +697,7 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 13. System saves the line to drawing state (`JSON` / `DB`)
 14. Canvas redraws showing the permanent line
 
-##### Alternative Flows ^AF1
+##### Alternative Flows 
 ###### **`A1` — Multi-segment polyline mode**
 - After step 6, user continues clicking additional points
 - System stores each click as a new segment endpoint and extends the rubber-band from the last point
@@ -717,7 +714,7 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 - System shows an out-of-bounds indicator but does not block the action
 - Flow continues from step 6 with the out-of-bounds coordinate
 
-##### Exception Flows ^EF1
+##### Exception Flows 
 ###### **`E1` — User presses Escape during drawing**
 - At any point after step 3 and before step 10
 - System cancels the operation, discards Start-Point, clears the rubber-band preview
@@ -728,12 +725,12 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 - System shows inline warning: "Active layer is locked — object cannot be placed"
 - Object is not saved; system returns to drawing state for the user to select a different layer
 
-##### Postcondition ^PC1
+##### Postcondition 
 A Line (or polyline) object exists in the drawing state, is visible on canvas, is assigned to the active layer, and is reflected in the layer's object count.
 
 ---
 
-#### UC-002 · Assign an object to a layer ^UC2
+#### UC-002 · Assign an object to a layer 
 
 | Field | Value |
 |---|---|
@@ -741,7 +738,7 @@ A Line (or polyline) object exists in the drawing state, is visible on canvas, i
 | Related FR | FR-LP-001, FR-PP-007, FR-UI-020 |
 | Precondition | At least one object exists on the canvas; at least two layers exist |
 | Trigger | User selects an object and changes its layer assignment in the property panel |
-##### Flowchart ^FC2
+##### Flowchart 
 
 ```mermaid
 %%{init: {
@@ -809,7 +806,7 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 	L --> M
 ```
 
-##### Main Flow ^MF2
+##### Main Flow 
 1. User clicks an object on the canvas to select it
 2. Property panel updates to show the object's properties, including the **Layer** dropdown
 3. User opens the Layer dropdown
@@ -819,7 +816,7 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 7. System updates the object count on both the source layer and the target layer
 8. Canvas redraws — object inherits the target layer's default Color, Line Style, and Line Weight (unless the object has explicit overrides)
 
-##### Alternative Flows ^AF2
+##### Alternative Flows 
 ###### **A1 — Multi-selection, same type**
 - User selects multiple objects (same type) before step 3
 - Layer dropdown shows `(mixed)` if objects are on different layers
@@ -835,7 +832,7 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 - All objects on that layer become selected
 - User changes Layer in property panel → all objects move to the new layer
 
-##### Exception Flows ^EF2
+##### Exception Flows 
 ###### **E1 — Target layer is locked**
 - At step 6, system detects the target layer is locked
 - System shows inline warning: "Target layer is locked"
@@ -845,12 +842,12 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 - At step 4, dropdown shows only one layer
 - Reassignment is not meaningful; system may disable the dropdown or show a tooltip: "Add more layers to reassign"
 
-##### Postcondition ^PC2
+##### Postcondition 
 The selected object(s) belong to the chosen layer. Object counts on affected layers are accurate. Visual properties reflect the new layer's defaults (unless overridden at object level).
 
 
 ---
-#### UC-003 · Attach a Smart Tag to an object ^UC3
+#### UC-003 · Attach a Smart Tag to an object 
 
 | Field | Value |
 |---|---|
@@ -858,7 +855,7 @@ The selected object(s) belong to the chosen layer. Object counts on affected lay
 | Related FR | FR-DT-040, FR-DT-041, FR-DT-042, VAL-010 (tag value type) |
 | Precondition | An object is selected; at least one Smart Tag definition exists (or user creates one inline) |
 | Trigger | User opens the Tags section in the property panel and adds a tag |
-##### Flowchart ^FC3
+##### Flowchart 
 
 ```mermaid
 %%{init: {
@@ -930,7 +927,7 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 ```
 
 
-##### Main Flow ^MF3
+##### Main Flow 
 1. User selects an object on the canvas
 2. Property panel shows the **Tags** section (collapsed by default if no tags are attached)
 3. User clicks **Add Tag**
@@ -942,7 +939,7 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 9. System saves the tag instance: `{ ObjectId, TagDefinitionId, Value, DisplayMode }`
 10. If Display Mode is **Label** or **Badge**, the canvas redraws showing the tag on the object
 
-##### Alternative Flows ^AF3
+##### Alternative Flows 
 ###### **A1 — Create a new tag definition inline**
 - At step 4, user clicks **New Tag Definition**
 - User enters: Name, Value Type (text / number / boolean / list), Default Value, Unit (optional)
@@ -959,7 +956,7 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 - After step 9, user changes Display Mode from Hidden → Label or Badge
 - Canvas redraws showing the tag label/badge on the object
 
-##### Exception Flows ^EF3
+##### Exception Flows 
 ###### **E1 — Value type mismatch**
 - At step 8, user enters a non-numeric value for a Number-type tag
 - System highlights the value field with an inline error: "Expected a numeric value"
@@ -969,12 +966,12 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 - At A1, user attempts to save a definition with an empty Name field
 - System blocks save; inline error on the Name field
 
-##### Postcondition ^PC3
+##### Postcondition 
 The tag instance is attached to the object, stored in drawing state, and visible on canvas if Display Mode is Label or Badge.
 
 ---
 
-#### UC-004 · Run a take-off quantity summary ^UC4
+#### UC-004 · Run a take-off quantity summary 
 
 | Field | Value |
 |---|---|
@@ -982,7 +979,7 @@ The tag instance is attached to the object, stored in drawing state, and visible
 | Related FR | FR-DT-043, FR-DT-044, FR-DT-045, FR-PP-008 |
 | Precondition | At least one object has logical 3D attributes (H, W, L) and/or Smart Tags with numeric values assigned |
 | Trigger | User opens the Aggregation / Take-Off panel |
-##### Flowchart ^FC4
+##### Flowchart 
 
 ```mermaid
 %%{init: {
@@ -1064,7 +1061,7 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 	U --> O
 ```
 
-##### Main Flow ^MF4
+##### Main Flow 
 1. User opens the **Take-Off panel** (standalone view or docked panel)
 2. System scans all objects in the current drawing that have tag instances or logical 3D attributes
 3. System presents aggregation options:
@@ -1079,7 +1076,7 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 8. System exports the table to CSV or Excel (user selects format)
 9. System confirms export success with file path / download link
 
-##### Alternative Flows ^AF4
+##### Alternative Flows 
 
 ###### **A1 — Filter by layer before aggregating**
 - Before step 4, user selects one or more layers to include
@@ -1102,7 +1099,7 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 - User clicks **Refresh**
 - System re-scans and updates the result table
 
-##### Exception Flows ^EF4
+##### Exception Flows 
 ###### **E1 — No tagged objects found**
 - At step 2, system finds no objects with relevant attributes
 - System shows empty state message: "No objects with tags or dimensions found. Assign Smart Tags or logical dimensions to objects first."
@@ -1118,16 +1115,12 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 - System shows error: "Cannot write to this location. Choose a different folder."
 - Export is retried without losing the result table
 
-##### Postcondition ^PC4
+##### Postcondition 
 A take-off summary table is computed and optionally exported. No drawing objects are modified by this operation.
 
 ---
 
-
-
----
-
-#### UC-005 · Insert a symbol from the library ^UC5
+#### UC-005 · Insert a symbol from the library 
 
 | Field | Value |
 |---|---|
@@ -1135,7 +1128,7 @@ A take-off summary table is computed and optionally exported. No drawing objects
 | Related FR | FR-DT-030, FR-DT-031, FR-DT-032, FR-DT-033 |
 | Precondition | A drawing is open; at least one symbol definition exists in the project or global library |
 | Trigger | User opens the Symbol Library panel |
-##### Flowchart ^FC5
+##### Flowchart 
 
 ```mermaid
 %%{init: {
@@ -1223,7 +1216,7 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 ```
 
 
-##### Main Flow ^MF5
+##### Main Flow 
 1. User opens the **Symbol Library** panel
 2. System lists available symbols grouped by category
 3. User browses or searches for a symbol
@@ -1235,7 +1228,7 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 9. System saves the symbol instance to drawing state
 10. Canvas redraws showing the placed symbol
 
-##### Alternative Flows ^AF5
+##### Alternative Flows 
 
 ###### **A1 — Set scale / rotation before placing**
 - After step 4 and before step 6, user sets Scale X, Scale Y, and Rotation in the property panel (tool defaults mode)
@@ -1257,7 +1250,7 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 - System validates and adds the definition to the project library
 - Flow continues from step 3
 
-##### Exception Flows ^EF5
+##### Exception Flows 
 ###### **E1 — Circular block reference detected**
 - User attempts to define a symbol that contains itself (directly or transitively)
 - System blocks the definition save with error: "Circular reference detected — a symbol cannot contain itself"
@@ -1271,12 +1264,12 @@ classDef cancel fill:#5A3A3A,stroke:#C17E7E,stroke-dasharray:4,color:#F5C2C2
 - At step 2, no symbols exist
 - System shows empty state with a prompt to import or create a symbol
 
-##### Postcondition ^PC5
+##### Postcondition 
 A symbol instance exists on the canvas, assigned to the active layer, with the correct position, scale, rotation, and attribute values.
 
 ---
 
-#### UC-006 · Edit properties of a multi-selection ^UC6
+#### UC-006 · Edit properties of a multi-selection 
 
 | Field | Value |
 |---|---|
@@ -1285,7 +1278,7 @@ A symbol instance exists on the canvas, assigned to the active layer, with the c
 | Precondition | At least two objects exist on the canvas |
 | Trigger | User selects multiple objects (window select, crossing select, or Ctrl+click) |
 
-##### Flowchart ^FC6
+##### Flowchart 
 
 ```mermaid
 %%{init: {
@@ -1365,7 +1358,7 @@ flowchart TD
 	Q --> R
 	R --> S
 ```
-##### Main Flow ^MF6
+##### Main Flow 
 1. User selects multiple objects
 2. System identifies the selection: same type or mixed types
 3. **If same type:** property panel shows all properties for that type; fields with differing values show `(mixed)`
@@ -1374,7 +1367,7 @@ flowchart TD
 6. System applies the new value to **all selected objects**
 7. Canvas redraws reflecting the change across all affected objects
 
-##### Alternative Flows ^AF6
+##### Alternative Flows 
 
 ###### **A1 — Edit a `(mixed)` field**
 - User clicks a field showing `(mixed)` and enters a new value
@@ -1396,7 +1389,7 @@ flowchart TD
 - e.g. Two lines selected: Start/End coordinates show `(mixed)`; editing sets the same value on both
 - This is an edge case the user would rarely want — system applies without blocking
 
-##### Exception Flows ^EF6
+##### Exception Flows 
 
 ###### **E1 — All selected objects are locked**
 - System shows all fields as read-only with a lock indicator
@@ -1407,13 +1400,13 @@ flowchart TD
 - System applies edits only to unlocked objects
 - Inline notice: "N locked objects were skipped"
 
-##### Postcondition ^PC6
+##### Postcondition 
 All unlocked selected objects reflect the edited property values. The canvas redraws. Undo stack records the batch edit as a single undoable action.
 
 
 ---
 
-#### UC-007 · Delete a layer with objects ^UC7
+#### UC-007 · Delete a layer with objects 
 
 | Field | Value |
 |---|---|
@@ -1422,7 +1415,7 @@ All unlocked selected objects reflect the edited property values. The canvas red
 | Precondition | At least two layers exist; the target layer contains one or more objects |
 | Trigger | User clicks Delete on a layer in the Layer panel |
 
-##### Flowchart ^FC7
+##### Flowchart 
 
 ```mermaid
 %%{init: {
@@ -1499,7 +1492,7 @@ flowchart TD
 	E --> Q
 	Q --> R
 ```
-##### Main Flow ^MF7
+##### Main Flow 
 1. User clicks **Delete** on a layer that contains objects
 2. System detects the layer has objects (object count > 0)
 3. System presents a dialog with two options:
@@ -1511,7 +1504,7 @@ flowchart TD
 7. System deletes the source layer
 8. Layer panel redraws without the deleted layer
 
-##### Alternative Flows ^AF7
+##### Alternative Flows 
 ###### **A1 — User chooses "Delete objects too"**
 - At step 3, user selects **Delete objects too** and confirms
 - System removes all objects on the layer from the drawing state
@@ -1526,7 +1519,7 @@ flowchart TD
 ###### **A3 — Delete via keyboard shortcut or context menu**
 - Same flow triggered from a different entry point; behavior is identical
 
-##### Exception Flows ^EF7
+##### Exception Flows 
 
 ###### **E1 — Target layer is the active layer**
 - At step 1, user attempts to delete the currently active layer
@@ -1540,12 +1533,12 @@ flowchart TD
 - At step 3, user clicks Cancel
 - No changes are made; layer and all its objects remain intact
 
-##### Postcondition ^PC7
+##### Postcondition 
 The target layer no longer exists in the layer list. All objects that were on it are either reassigned to another layer (with correct object counts) or deleted from drawing state. The canvas reflects the final state.
 
 ---
 
-#### UC-008 · Switch between standalone and integrated mode ^UC8
+#### UC-008 · Switch between standalone and integrated mode 
 
 | Field        | Value                                                                                      |
 | ------------ | ------------------------------------------------------------------------------------------ |
@@ -1556,7 +1549,7 @@ The target layer no longer exists in the layer list. All objects that were on it
 
 > [!Note]+ ***Note***
 > This is a **deployment-time** use case, not an end-user runtime action. The mode is set by the host application at startup via configuration — the user does not switch modes mid-session.
-##### Flowchart ^FC8
+##### Flowchart 
 
 ```mermaid
 %%{init: {
@@ -1633,7 +1626,7 @@ flowchart TD
 	K --> L
 ```
 
-##### Main Flow ^MF8
+##### Main Flow 
 1. Admin sets the deployment mode in the host application's configuration (e.g. `app.config`, environment variable, or installer option):
 	- `Mode = Standalone` or `Mode = Integrated`
 2. Host application initializes the CoNSoL-TakeOff Engine with the appropriate storage adapter:
@@ -1644,14 +1637,14 @@ flowchart TD
 5. Host application connects the drawing canvas, property panel, and layer panel components
 6. End user can now open or create a drawing
 
-##### Alternative Flows ^AF8
+##### Alternative Flows 
 ###### **A1 — Migrating from Standalone to Integrated**
 - Admin exports existing drawings from the standalone local database (using File → Export)
 - Admin reconfigures the host to Integrated mode
 - Admin imports drawings into the shared database via the Project Manager
 - Drawings are now accessible to other suite users
 
-##### Exception Flows ^EF8
+##### Exception Flows 
 ###### **E1 — License validation fails**
 - At step 3, Engine cannot validate the license token
 - Engine surfaces a license error to the host application
@@ -1669,7 +1662,7 @@ flowchart TD
 - Host application falls back to `Standalone` as the default safe mode
 - Warning is logged
 
-##### Postcondition ^PC8
+##### Postcondition 
 The CoNSoL-TakeOff Engine is running in the correct mode with the appropriate storage adapter, license model, and integration points active. End users interact with the same drawing UI regardless of mode.
 
 ---
