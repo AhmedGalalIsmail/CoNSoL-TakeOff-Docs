@@ -346,29 +346,6 @@ Calculation:
 
 ---
 
-## ⚠️ Important Notes
-
-### No UI Dependencies
-
-❌ Do NOT add:
-- Windows.Forms references
-- WPF references
-- Any UI framework imports
-
-✅ Keep domain layer:
-- Pure .NET Framework APIs
-- JSON serialization only
-- Geometric calculations only
-
-### Framework Independence
-
-This layer is designed to be **host-agnostic**:
-- ✅ Desktop (WinForms)
-- ✅ Web (Blazor/HTML5 Canvas)
-- ✅ Mobile (Xamarin/MAUI future)
-
----
-
 ## 🚀 Quick Reference
 
 ### Create a Canvas Element
