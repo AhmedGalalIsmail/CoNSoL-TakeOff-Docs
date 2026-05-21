@@ -150,6 +150,20 @@ The calculation engine automatically handles subtraction.
 ## 📂 Project Structure
 
 ```
+/Domain/
+├── Layer.vb
+├── LayerManager.vb
+├── CanvasLayoutValidation.vb
+├── CanvasElementValidation.vb
+
+/Application/
+├── TakeOffCalculator.vb (FULL implementation)
+
+/Domain/Common/
+├── ValidationException.vb
+├── DomainErrorCodes.vb
+
+
 CoNSoL-TakeOff/
 ├── Domain/                              # Business logic, entities, utilities
 │   ├── Entities/
