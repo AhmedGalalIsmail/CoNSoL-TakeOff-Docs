@@ -51,10 +51,10 @@ CoNSoL-TakeOff bridges the gap by treating drawing geometry as **first-class bus
 
 | Component | Purpose | Documentation |
 |-----------|---------|----------------|
-| **Domain** | Data entities, geometry utilities, business definitions | [Domain/README.md](Domain%20README.md) |
-| **Application** | Use case orchestration, calculation engine, services | [Application/README.md](Application%20README.md) |
-| **Infrastructure** | Configuration, logging, persistence, security | [Infrastructure/README.md](Infrastructure%20README.md) |
-| **Desktop** | WinForms UI, canvas rendering, tool interaction | [Desktop/README.md](Desktop%20README.md) |
+| **Domain** | Data entities, geometry utilities, business definitions | [Domain README.md](Domain%20README.md) |
+| **Application** | Use case orchestration, calculation engine, services | [Application README.md](Application%20README.md) |
+| **Infrastructure** | Configuration, logging, persistence, security | [Infrastructure README.md](Infrastructure%20README.md) |
+| **Desktop** | WinForms UI, canvas rendering, tool interaction | [Desktop README.md](Desktop%20README.md) |
 
 ---
 
@@ -97,17 +97,17 @@ This project follows a structured **Software Development Lifecycle (SDLC)** docu
 
 | Phase | Document | Purpose |
 |-------|----------|---------|
-| **Inception** | [0101-Requirement_Analysis](Mega-File.md#-0101--requirement-analysis-) | Business vision, scope, success criteria |
-| **Inception** | [0102-Planning](Mega-File.md#--0102--planning-) | Roadmap, risks, milestones |
-| **Inception** | [0104-SRS](Mega-File.md#-0104--software-requirements-specification-srs) | Functional & non-functional requirements |
-| **Design** | [0201-Design_Documentation](Mega-File.md#-0201--design-documentation) | Architecture, system context, components |
-| **Design** | [020103-Data_Model](Mega-File.md#-020103--data-model) | Entity relationships, schema, serialization |
-| **Design** | [0208-UX_UI_Design](Mega-File.md#-0208--ux--ui-design) | Interaction model, tools, validation rules |
-| **Implementation** | [0301-Development_Documentation](Mega-File.md#-0301--development-documentation) | Coding standards, patterns, architecture patterns |
-| **Verification** | [0401-Testing_Documentation](Mega-File.md#-0401--testing-documentation) | Test strategy, automation, UAT |
-| **Delivery** | [0501-Deployment_Documentation](Mega-File.md#-0501--deployment-documentation) | Release notes, deployment runbooks |
+| **Inception** | [0101-Requirement_Analysis](Docs/05_CoNSoL-TakeOff-SDLC-Documents-Library/05_Mega-File.md#-0101--requirement-analysis-0101) | Business vision, scope, success criteria |
+| **Inception** | [0102-Planning](Docs/05_CoNSoL-TakeOff-SDLC-Documents-Library/05_Mega-File.md#--0102--planning-) | Roadmap, risks, milestones |
+| **Inception** | [0104-SRS](Docs/05_CoNSoL-TakeOff-SDLC-Documents-Library/05_Mega-File.md#-0104--software-requirements-specification-srs) | Functional & non-functional requirements |
+| **Design** | [0201-Design_Documentation](Docs/05_CoNSoL-TakeOff-SDLC-Documents-Library/05_Mega-File.md#-0201--design-documentation) | Architecture, system context, components |
+| **Design** | [020103-Data_Model](Docs/05_CoNSoL-TakeOff-SDLC-Documents-Library/05_Mega-File.md#-020103--data-model) | Entity relationships, schema, serialization |
+| **Design** | [0208-UX_UI_Design](Docs/05_CoNSoL-TakeOff-SDLC-Documents-Library/05_Mega-File.md#-0208--ux--ui-design) | Interaction model, tools, validation rules |
+| **Implementation** | [0301-Development_Documentation](Docs/05_CoNSoL-TakeOff-SDLC-Documents-Library/05_Mega-File.md#-0301--development-documentation) | Coding standards, patterns, architecture patterns |
+| **Verification** | [0401-Testing_Documentation](Docs/05_CoNSoL-TakeOff-SDLC-Documents-Library/05_Mega-File.md#-0401--testing-documentation) | Test strategy, automation, UAT |
+| **Delivery** | [0501-Deployment_Documentation](Docs/05_CoNSoL-TakeOff-SDLC-Documents-Library/05_Mega-File.md#-0501--deployment-documentation) | Release notes, deployment runbooks |
 
-**See [Mega-File.md](Mega-File.md) for complete SDLC documentation library.**
+**See [Mega-File.md](Docs/05_CoNSoL-TakeOff-SDLC-Documents-Library/05_Mega-File.md) for complete SDLC documentation library.**
 
 ---
 
