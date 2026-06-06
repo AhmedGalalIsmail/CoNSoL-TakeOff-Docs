@@ -1,6 +1,12 @@
-# 🏗️ CoNSoL-TakeOff AI — PRODUCT STORY
+# 🏛 CoNSoL-TakeOff AI — PRODUCT STORY
 
 ---
+
+# 🤖 ***AI Product Vision***
+
+## 🔬 Mission
+
+Transform construction drawings into automated take-off results using AI.
 
 ## 🎯 The Problem
 
@@ -20,17 +26,19 @@ Civil engineers, estimators, and contractors:
 
 ---
 
+
 ## 🚀 The Solution
-
-# 🤖 **AI-Powered Take-Off Engine**
-
----
+#  🏛 ***AI-Powered Take-Off Engine***
 
 ## 💡 Product Vision
 
 > “Upload a drawing → Get quantities, cost, and reports in minutes.”
-
 ## 🧠 System Intelligence Flow
+
+### 📊 Flow
+
+Upload → Detect → Classify → Calculate → Export
+
 
 ```mermaid
 flowchart TD
@@ -53,7 +61,15 @@ flowchart TD
 
 ---
 
-## 🧱 System Architecture
+## 🧱 System Architecture Overview
+
+### 📝 Layers
+
+- AI Intake
+- Processing Engine
+- Visualization
+- User Control
+- Export System
 
 ```mermaid
 flowchart LR
@@ -66,15 +82,36 @@ flowchart LR
 
 ---
 
+### 👷 Execution Roadmap
+
+#### Phase 1
+- AI Intake
+- Scale Detection
+
+#### Phase 2
+- Geometry Detection
+- Classification
+
+#### Phase 3
+- Smart Layers
+- Material Mapping
+- Cost Management 
+
+#### Phase 4
+- Export
+- User Corrections
+
+---
+
 ## 🎯 Core Value Proposition
 
-|Feature|Benefit|
-|---|---|
-|AI reading drawings|⏱ Save 80% time|
-|Auto scale detection|🎯 Accuracy|
-|Layer separation|👁️ Clear visualization|
-|Material mapping|💰 Instant cost|
-|Export reports|📊 Business ready|
+| Feature              | Benefit                 |
+| -------------------- | ----------------------- |
+| AI reading drawings  | ⏱ Save 80% time         |
+| Auto scale detection | 🎯 Accuracy             |
+| Layer separation     | 👁️ Clear visualization |
+| Material mapping     | 💰 Instant cost         |
+| Export reports       | 📊 Business ready       |
 
 ---
 
@@ -83,7 +120,7 @@ flowchart LR
 ✅ No manual drawing required  
 ✅ AI-assisted interpretation  
 ✅ User-controlled correction  
-✅ Built for real construction workflow
+✅ Built for real construction workflows
 
 ---
 
@@ -96,28 +133,28 @@ flowchart LR
 
 ---
 
-## 👷 Real User Journey
+## 🏛 CoNSoL-TakeOff AI Execution Matrix - Task Tracker
 
-```mermaid
-journey
-    title Estimator Workflow
+### 📊 Overview
 
-    section AI Intake
-      Upload Drawing: 5
-      AI Reads Drawing: 4
-      Confirm Scale: 3
-
-    section Processing
-      Detect Geometry: 5
-      Auto Categorize: 4
-      Fix Errors: 3
-
-    section Output
-      Run Calculation: 5
-      Export Excel: 5 
-
-```
-
+| ID      | Category | Task                  | Status | Depends On | Notes             |
+| ------- | -------- | --------------------- | ------ | ---------- | ----------------- |
+| AI-001  | AI       | OCR Text Extraction   | 🔲     | —          | Tesseract         |
+| AI-002  | AI       | Scale Detection       | 🔲     | AI-001     | Pattern-based     |
+| AI-003  | AI       | Geometry Detection    | 🔲     | AI-002     | OpenCV            |
+| AI-004  | AI       | Classification Engine | 🔲     | AI-003     | Rule-based        |
+| AI-005  | AI       | YOLO Integration      | 🔲     | AI-003     | Future upgrade    |
+| UI-001  | UI       | Canvas Rendering      | 🔲     | —          | Stable            |
+| UI-002  | UI       | Layer Panel           | 🔲     | AI-004     | Needs binding     |
+| UI-003  | UI       | Properties Panel      | 🔲     | UI-001     | Works             |
+| UI-004  | UI       | Selection UX          | 🔲     | UI-001     | Improve lines     |
+| BUS-001 | Business | TakeOff Calculator    | 🔲     | —          | Working           |
+| BUS-002 | Business | Material Mapping      | 🔲     | AI-004     | Expand logic      |
+| EXP-001 | Export   | Excel Export          | 🔲     | BUS-001    | Done              |
+| EXP-002 | Export   | PDF Export            | 🔲     | EXP-001    | Pending           |
+| SYS-001 | System   | Logging               | 🔲     | —          | Stable            |
+| SYS-002 | System   | Config                | 🔲     | —          | Add default scale |
+| SYS-003 | System   | Caching               | 🔲     | AI-001     | Must add          |
 
 ---
 
