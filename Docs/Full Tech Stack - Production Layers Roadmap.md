@@ -38,7 +38,7 @@ The roadmap is organized into seventeen layers that collectively represent the m
 ## Core Application
 	
 - [Layer 01 - Frontend Foundations](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-01---frontend-foundations)
-- [Layer 02 - APIs & Backend Logic](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-02---APIs-&-Backend-Logic)
+- [Layer 02 - APIs & Backend Logic](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-02---apis--backend-logic)
 - [Layer 03 - Database Design & Data Architecture](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-03---Database-&-Storage)
 - [Layer 04 - Authentication & Permissions](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-04---Authentication-&-Permissions)
     
