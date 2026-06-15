@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <StartupObject>Desktop.program</StartupObject>
+    <UseWindowsForms>true</UseWindowsForms>
+    <MyType>WindowsForms</MyType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ApplicationEvents.vb" />
+    <Compile Remove="Forms\MainForm.Designer.vb" />
+    <Compile Remove="My Project\Application.Designer.vb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="My Project\Application.myapp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.vbproj" />
+    <ProjectReference Include="..\Domain\Domain.vbproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="My Project\" />
+  </ItemGroup>
+
+</Project>
