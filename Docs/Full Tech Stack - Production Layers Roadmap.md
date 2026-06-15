@@ -39,39 +39,39 @@ The roadmap is organized into seventeen layers that collectively represent the m
 	
 - [Layer 01 - Frontend Foundations](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-01---frontend-foundations)
 - [Layer 02 - APIs & Backend Logic](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-02---apis--backend-logic)
-- [Layer 03 - Database Design & Data Architecture](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-03---Database-&-Storage)
-- [Layer 04 - Authentication & Permissions](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-04---Authentication-&-Permissions)
+- [Layer 03 - Database Design & Data Architecture](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-03---database-design)
+- [Layer 04 - Authentication & Permissions](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-04---authentication--permissions)
     
 ## Delivery Platform
 	
-- [Layer 05 - Hosting & Deployment](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-05---Hosting-&-Deployment)
-- [Layer 06 - Cloud & Compute](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-06---Cloud-&-Compute)
-- [Layer 07 - CI/CD & Version Control](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-07---CI-CD-&-Version-Control)
+- [Layer 05 - Hosting & Deployment](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-05---hosting--deployment)
+- [Layer 06 - Cloud & Compute](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-06---cloud--compute)
+- [Layer 07 - CI/CD & Version Control](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-07---cicd--version-control)
     
 ## Protection
 	
-- [Layer 08 - Security](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-08---Security)
-- [Layer 09 - Rate Limiting](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-09---Rate-Limiting)
+- [Layer 08 - Security](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-08---security)
+- [Layer 09 - Rate Limiting](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-09---rate-limiting)
     
 ## Performance
 	
-- [Layer 10 - Caching & CDN](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-10---Caching-&-CDN)
-- [Layer 11 - Scaling](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-11---Scaling)
+- [Layer 10 - Caching & CDN](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-10---caching--cdn)
+- [Layer 11 - Scaling](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-11---scaling)
     
 ## Operations
 	
-- [Layer 12 - Logging & Monitoring](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-12---Logging-&-Monitoring)
+- [Layer 12 - Logging & Monitoring](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-12---logging--monitoring)
     
 ## Reliability
 	
-- [Layer 13 - Availability & Recovery](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-13---Availability-&-Recovery)
+- [Layer 13 - Availability & Recovery](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-13---availability--recovery)
     
 ## Engineering Excellence
 	
-- [Layer 14 - Testing & Quality Assurance](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-14---Testing-&-Quality-Assurance)
-- [Layer 15 - Architecture & Design](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-15---Architecture-&-Design)
-- [Layer 16 - Documentation](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-16---Documentation)
-- [Layer 17 - Analytics & Telemetry](https://chatgpt.com/c/Production-Layers-Roadmap/Layer-17---Analytics-&-Telemetry)
+- [Layer 14 - Testing & Quality Assurance](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-14---testing--quality-assurance)
+- [Layer 15 - Architecture & Design](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-15---architecture--design)
+- [Layer 16 - Documentation](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-16---documentation)
+- [Layer 17 - Analytics & Telemetry](https://github.com/AhmedGalalIsmail/CoNSoL-TakeOff-Docs/blob/main/Docs/Full%20Tech%20Stack%20-%20Production%20Layers%20Roadmap.md#layer-17---analytics--telemetry)
     
 
 ---
