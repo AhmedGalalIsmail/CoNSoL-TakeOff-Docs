@@ -1,11 +1,21 @@
-﻿
+
 Option Strict On
 Imports System.Security.Cryptography
 Imports System.IO
 
 Namespace Crypto
+    ''' <summary>
+    ''' Provides methods for encrypting and decrypting files using AES-GCM.
+    ''' </summary>
     Public Class CryptoService
         ' AES-GCM
+        ''' <summary>
+        ''' Encrypts a file using AES-GCM and writes the nonce, tag, and ciphertext to the output file.
+        ''' </summary>
+        ''' <param name="inputPath"></param>
+        ''' <param name="outputPath"></param>
+        ''' <param name="key"></param>
+        ''' <param name="nonce"></param>
         Public Sub EncryptFile(inputPath As String, outputPath As String, key As Byte(), nonce As Byte())
             Dim plaintext = File.ReadAllBytes(inputPath)
             Dim tag(15) As Byte
@@ -22,6 +32,12 @@ Namespace Crypto
             End Using
         End Sub
 
+        ''' <summary>
+        ''' Decrypts a file that was encrypted using AES-GCM. It reads the nonce, tag, and ciphertext from the input file and writes the decrypted plaintext to the output file.
+        ''' </summary>
+        ''' <param name="inputPath"></param>
+        ''' <param name="outputPath"></param>
+        ''' <param name="key"></param>
         Public Sub DecryptFile(inputPath As String, outputPath As String, key As Byte())
             Dim all = File.ReadAllBytes(inputPath)
             Dim nonce = all.Take(12).ToArray()
