@@ -23,14 +23,8 @@ Namespace Logging
     Public Class FileLogger
         Implements ILogger
 
-
         Private ReadOnly _logDir As String
         Private ReadOnly _appName As String
-
-        'Private ReadOnly _logDir As String
-        'Private ReadOnly _logPath As String
-        'Private ReadOnly _appName As String
-        'Private ReadOnly _lock As New Object()
 
         ''' <summary>Initializes logger with specified log file path.</summary>
         ''' <param name="logPath">Path to log file</param>
@@ -91,31 +85,5 @@ Namespace Logging
             End SyncLock
         End Sub
 
-        ' Old code had a bug where it did not handle exceptions during file writing, which could crash the application. Fixed by adding try-catch around file write operation.
-        'Private Sub Write(level As String, text As String)
-        '    ' Log file name includes date for daily rotation: logs/console-takeoff_20240601.log
-        '    Dim file = Path.Combine(_logDir, $"{_appName}_{DateTime.UtcNow:yyyyMMdd}.log")
-        '    ' Log format: 2024-06-01T12:34:56.789Z [INFO] Message text
-        '    Dim line = $"{DateTime.UtcNow:O} [{level}] {text}"
-        '    SyncLock GetType(FileLogger)
-        '        System.IO.File.AppendAllText(file, line & Environment.NewLine, Encoding.UTF8)
-        '    End SyncLock
-        'End Sub
-
-        ' Old code had a bug where it used a static lock object, which could cause contention across multiple logger instances. Fixed by using SyncLock on the instance (Me) instead of a shared lock object.
-        ''' <summary>Writes a log entry to the file with the specified severity level and message.</summary><param name="level"></param><param name="message"></param>
-        'Private Sub WriteLog(level As String, message As String)
-        '    SyncLock _lock
-        '        Try
-        '            ' Log format: 2024-06-01 12:34:56 [INFO] Message text
-        '            Dim logEntry = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} [{level}] {message}"
-        '            ' Ensure log file is created in the specified directory
-        '            File.AppendAllText(_logPath, logEntry & vbCrLf)
-        '        Catch ex As Exception
-        '            ' Silent fail - don't throw on logging errors
-        '            System.Diagnostics.Debug.WriteLine($"Failed to write log: {ex.Message}")
-        '        End Try
-        '    End SyncLock
-        'End Sub
     End Class
 End Namespace
