@@ -1,4 +1,4 @@
-﻿' src\ CoNSoL.Domain \ Utilities \ Geometry.vb
+' src\ CoNSoL.Domain \ Utilities \ Geometry.vb
 ' New: simple Geometry helpers (domain). Implementations are conservative but compile-safe.
 Option Strict On
 Imports System.Text.Json
