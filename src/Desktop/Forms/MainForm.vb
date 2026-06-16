@@ -3,11 +3,12 @@ Option Strict On
 Imports System.Security.Cryptography
 Imports Desktop.CompositionRoot
 Imports Desktop.Controls
-Imports Domain
 Imports Domain.Entities
 Imports Domain.Services
 Imports Infrastructure.IO
 Imports Application
+Imports Application.AI
+Imports Desktop
 
 
 Namespace Forms
@@ -51,12 +52,14 @@ Namespace Forms
 
 		''' <summary>Properties panel for editing selected object properties (future use).</summary>
 		Private ReadOnly _propertiesPanel As New PropertiesPanel()
+
+		''' <summary>Stores the last takeoff result for export and reference.</summary>
 		Private ReadOnly lastResult As TakeOffResult
 
 		''' <summary>Current drawing layout (canvas state).</summary>
 		Private CurrentLayout As CanvasLayout
 
-		Private propertiesPanel As New PropertiesPanel()
+		'Private propertiesPanel As New PropertiesPanel()
 
 		' ? CONTROL NAME: layerPanel
 		Private layerPanel As LayerPanel
@@ -96,8 +99,9 @@ Namespace Forms
 				Me.Controls.Add(_left)
 				Me.Controls.Add(_status)
 				Me.Controls.Add(layerPanel)
+				Me.Controls.Add(_propertiesPanel)
 
-				Me.Controls.Add(propertiesPanel)
+				AddHandler _canvas.ElementSelected, AddressOf OnElementSelected
 
 				' Load documentation (non-critical)
 				LoadReadmeFiles()
@@ -113,6 +117,12 @@ Namespace Forms
 					MessageBoxIcon.Error)
 			End Try
 		End Sub
+
+
+		Private Sub OnElementSelected(el As CanvasElement)
+			_propertiesPanel.SetElement(el)
+		End Sub
+
 
 		''' <summary>
 		''' Initializes all tool buttons and their event handlers.
@@ -149,6 +159,12 @@ Namespace Forms
 				Dim btnSave = CreateToolButton("Save Layout", Sub() SaveLayout(), heightOverride:=40)
 				Dim btnExportExcel = CreateToolButton("Export Excel", Sub() ExportExcel_Click(), heightOverride:=40)
 
+				' Import AI button 
+				Dim btnImportAI = CreateToolButton("Import", Sub() ImportAI_Click(), heightOverride:=40)
+				btnImportAI.Dock = DockStyle.Top
+
+
+
 				' Add buttons to panel (in reverse order due to docking from top)
 				_left.Controls.Add(btnSave)
 				_left.Controls.Add(btnOpen)
@@ -163,6 +179,12 @@ Namespace Forms
 				_left.Controls.Add(btnEllipse)
 				_left.Controls.Add(btnPolyline)
 				_left.Controls.Add(btnExportExcel)
+				Me.Controls.Add(btnImportAI)
+
+
+				'layerManager.Initialize()
+				layerManager.EnsureDefaultLayer()
+
 
 				Logger.Info("Tool buttons created and added to panel")
 
@@ -172,14 +194,48 @@ Namespace Forms
 			End Try
 		End Sub
 
+		Private Sub ImportAI_Click() 'sender As Object, e As EventArgs)
+			Dim dlg As New OpenFileDialog()
+			dlg.Filter = "Images|*.png;*.jpg;*.jpeg"
+			If dlg.ShowDialog() <> DialogResult.OK Then Exit Sub
+			Dim ai As New AiIntakeService()
+			Dim result = ai.ProcessDrawing(dlg.FileName)
+			Dim scale = result.DetectedScale
+			If String.IsNullOrEmpty(scale) Then
+				scale = "1:100" ' ✅ fallback default
+			End If
+			Dim confirmed = MessageBox.Show(
+				$"Detected Scale: {scale}" & vbCrLf & "Confirm?",
+				"Scale Detection",
+				MessageBoxButtons.YesNo)
+			' After confirmation
+			Dim layout As New CanvasLayout()
+			For Each el In result.DetectedElements
+				layout.Elements.Add(el)
+			Next
+			' Fix: call instance method on the _canvas instance instead of referencing the type.
+			' Use the same method used elsewhere in this class for consistency.
+			_canvas.LoadFromLayout(layout)
+			MessageBox.Show($"Detected {layout.Elements.Count} elements!")
+			' User cancel/select No
+			If confirmed = DialogResult.No Then
+				scale = InputBox("Enter correct scale:", "Scale", scale)
+			End If
+			MessageBox.Show($"Final Scale: {scale}")
+		End Sub
+
 		''' <summary>
 		''' Exports the takeoff results to an Excel file using the ExcelExporter service.
 		''' </summary>
 		''' <param name=""></param>
 		Private Sub ExportExcel_Click()
+			If lastResult Is Nothing Then
+				MessageBox.Show("No calculation result available ❌")
+				Exit Sub
+			End If
 			Dim exporter As New ExcelExporter()
-			exporter.Export(lastResult, "takeoff.xlsx")
-			MessageBox.Show("Exported ?")
+			ExcelExporter.Export(lastResult, "takeoff.xlsx")
+			MessageBox.Show("Exported ✅")
 		End Sub
 
 
@@ -188,9 +244,9 @@ Namespace Forms
 		''' </summary>
 		''' <param name="text">Button label text</param>
 		''' <param name="clickHandler">Event handler for button click</param>
-		''' <param name="heightOverride">Optional custom height (default: 34)</param>
+		''' <param name="heightOverride">Optional custom height (default: 40)</param>
 		''' <returns>Configured button control</returns>
-		Private Function CreateToolButton(text As String, clickHandler As Action, Optional heightOverride As Integer = 34) As Button
+		Private Function CreateToolButton(text As String, clickHandler As Action, Optional heightOverride As Integer = 40) As Button
 			Dim btn = New Button With {
 				.Text = text,
 				.Dock = DockStyle.Top,
@@ -216,7 +272,8 @@ Namespace Forms
 			End Try
 		End Sub
 
-		''' <summary>Handles Zoom In button click.</summary>
+		''' <summary>
+		''' Handles Zoom In button click.</summary>
 		Private Sub HandleZoomIn()
 			Try
 				Logger.Info("Zoom In clicked")
@@ -418,65 +475,6 @@ Namespace Forms
 			End Using
 		End Sub
 
-
-		'Private Sub SaveLayout()
-		'    Dim savePath As String = Nothing
-
-		'    Try
-		'        Logger.Info("Saving layout file dialog")
-
-		'        Using sfd As New SaveFileDialog With {
-		'            .Filter = "TakeOff (*.takeoff)|*.takeoff|JSON (*.json)|*.json",
-		'            .Title = "Save Drawing Layout",
-		'            .DefaultExt = ".takeoff"
-		'        }
-
-		'            If sfd.ShowDialog() <> DialogResult.OK Then
-		'                Logger.Info("Save dialog canceled")
-		'                Return
-		'            End If
-
-		'            savePath = sfd.FileName
-		'            Logger.Info($"Saving to file: {savePath}")
-
-		'        End Using
-
-		'        ' Validate layout before saving
-		'        If CurrentLayout Is Nothing Then
-		'            Logger.Warn("No layout to save (CurrentLayout is Nothing)")
-		'            UpdateStatusBar("No layout to save", isError:=True)
-		'            Return
-		'        End If
-
-		'        ' Determine if file should be encrypted based on extension
-		'        Dim encrypted = savePath.EndsWith(".takeoff", StringComparison.OrdinalIgnoreCase)
-
-		'        ' Generate random nonce for encryption
-		'        Dim nonce = New Byte(11) {}
-		'        RandomNumberGenerator.Fill(nonce)
-
-		'        ' Convert canvas to layout and save
-		'        Dim layout = _canvas.ToLayout()
-		'        Logger.Info($"Canvas converted to layout (elements: {layout.Elements.Count})")
-
-		'        ' Save file
-		'        Dim store = New TakeOffFileStore(CompositionRoot.Crypto)
-		'        store.Save(savePath, layout, encrypt:=encrypted, nonce:=nonce)
-
-		'        UpdateStatusBar($"Layout saved: {IO.Path.GetFileName(savePath)}")
-		'        Logger.Info($"Layout saved successfully: {savePath}")
-
-		'    Catch ex As Exception
-		'        Logger.Error($"Failed to save layout: {ex.Message}", ex)
-		'        UpdateStatusBar("Failed to save layout", isError:=True)
-		'        MessageBox.Show(
-		'            $"Failed to save layout: {ex.Message}",
-		'            "Save Layout Error",
-		'            MessageBoxButtons.OK,
-		'            MessageBoxIcon.Error)
-		'    End Try
-		'End Sub
-
 		''' <summary>
 		''' Designer-generated initialization method (auto-generated code).
 		''' </summary>
@@ -498,158 +496,3 @@ Namespace Forms
 		End Sub
 	End Class
 End Namespace
-
-' V1.1 Original version
-'Namespace Forms
-'    Public Class MainForm
-'        Inherits Form
-
-'        Private ReadOnly _canvas As New CanvasControl With {.Dock = DockStyle.Fill}
-'        Private ReadOnly _left As New Panel With {.Dock = DockStyle.Left, .Width = 250}
-'        Private ReadOnly _status As New StatusStrip()
-'        Private ReadOnly _propertiesPanel As New PropertiesPanel()
-
-'        Private CurrentLayout As CanvasLayout
-
-'        Public Sub New()
-'            InitializeComponent()
-'            Me.Text = "CoNSoL-TakeOff (WinForms)"
-'            Me.Width = 1200
-'            Me.Height = 800
-'            Me.Controls.Add(_propertiesPanel)
-
-'            ' Tools
-'            ' Select, Line, Rectangle, Ellipse, Polyline, Pan, Zoom In/Out, Toggle Grid
-
-'            ' Select
-'            Dim btnSelect As New Button With {.Text = "Select", .Dock = DockStyle.Top, .Height = 34}
-'            AddHandler btnSelect.Click, Sub() _canvas.SetTool(ToolType.SelectTool)
-
-'            ' Line
-'            Dim btnLine As New Button With {.Text = "Line", .Dock = DockStyle.Top, .Height = 34}
-'            AddHandler btnLine.Click, Sub() _canvas.SetTool(ToolType.Line)
-
-'            ' Rectangle
-'            Dim btnRect As New Button With {.Text = "Rectangle", .Dock = DockStyle.Top, .Height = 34}
-'            AddHandler btnRect.Click, Sub() _canvas.SetTool(ToolType.Rectangle)
-
-'            ' Ellipse
-'            Dim btnEllipse As New Button With {.Text = "Ellipse", .Dock = DockStyle.Top, .Height = 34}
-'            AddHandler btnEllipse.Click, Sub() _canvas.SetTool(ToolType.Ellipse)
-
-'            ' Polyline 
-'            Dim btnPolyline As New Button With {.Text = "Polyline", .Dock = DockStyle.Top, .Height = 34}
-'            AddHandler btnPolyline.Click, Sub() _canvas.SetTool(ToolType.Polyline)
-
-'            ' Pan
-'            Dim btnPan As New Button With {.Text = "Pan", .Dock = DockStyle.Top, .Height = 34}
-'            AddHandler btnPan.Click, Sub() _canvas.SetTool(ToolType.Pan)
-
-'            ' Zoom In/Out
-'            Dim btnZoomIn As New Button With {.Text = "Zoom +", .Dock = DockStyle.Top, .Height = 34}
-'            AddHandler btnZoomIn.Click, Sub() _canvas.ZoomIn()
-
-'            ' Zoom Out
-'            Dim btnZoomOut As New Button With {.Text = "Zoom -", .Dock = DockStyle.Top, .Height = 34}
-'            AddHandler btnZoomOut.Click, Sub() _canvas.ZoomOut()
-
-'            ' Toggle Grid
-'            Dim btnGrid As New Button With {.Text = "Toggle Grid", .Dock = DockStyle.Top, .Height = 34}
-'            AddHandler btnGrid.Click, Sub() _canvas.ToggleGrid()
-
-'            ' Layout management
-'            Dim btnNew As New Button With {.Text = "New Layout", .Dock = DockStyle.Top, .Height = 40}
-'            AddHandler btnNew.Click, Sub() NewLayout()
-
-'            ' Open Layout
-'            Dim btnOpen As New Button With {.Text = "Open Layout", .Dock = DockStyle.Top, .Height = 40}
-'            AddHandler btnOpen.Click, Sub() OpenLayout()
-
-'            ' Save Layout
-'            Dim btnSave As New Button With {.Text = "Save Layout", .Dock = DockStyle.Top, .Height = 40}
-'            AddHandler btnSave.Click, Sub() SaveLayout()
-
-'            _left.Controls.Add(btnSave)
-'            _left.Controls.Add(btnOpen)
-'            _left.Controls.Add(btnNew)
-'            _left.Controls.Add(btnGrid)
-'            _left.Controls.Add(btnZoomOut)
-'            _left.Controls.Add(btnZoomIn)
-'            _left.Controls.Add(btnPan)
-'            _left.Controls.Add(btnRect)
-'            _left.Controls.Add(btnLine)
-'            _left.Controls.Add(btnSelect)
-'            _left.Controls.Add(btnEllipse)
-'            _left.Controls.Add(btnPolyline)
-
-'            Me.Controls.Add(_canvas)
-'            Me.Controls.Add(_left)
-'            Me.Controls.Add(_status)
-
-'            ' Load per-project README files
-'            ' LoadReadmeFiles()
-'        End Sub
-
-'        Private Sub LoadReadmeFiles()
-'            Try
-'                Dim readmePaths = New String() {
-'                    "src/CoNSoL.Desktop/README.md",
-'                    "src/CoNSoL.Infrastructure/README.md",
-'                    "src/CoNSoL.Application/README.md",
-'                    "src/CoNSoL.Domain/README.md"
-'                }
-
-'                For Each path In readmePaths
-'                    Dim fullPath = IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path)
-'                    If IO.File.Exists(fullPath) Then
-'                        Dim content = IO.File.ReadAllText(fullPath)
-'                        ' You might want to show this content in a dedicated UI component, like a TextBox or a WebBrowser control
-'                        MessageBox.Show(content, $"README - {IO.Path.GetFileNameWithoutExtension(path)}", MessageBoxButtons.OK, MessageBoxIcon.Information)
-'                    End If
-'                Next
-'            Catch ex As Exception
-'                MessageBox.Show($"Error loading README files: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-'            End Try
-'        End Sub
-
-'        Private Sub NewLayout()
-'            CurrentLayout = New CanvasLayout()
-'            CompositionRoot.Logger.Info("New layout created")
-'            _canvas.Clear()
-'        End Sub
-
-'        Private Sub OpenLayout()
-'            Using ofd As New OpenFileDialog With {.Filter = "TakeOff (*.takeoff)|*.takeoff|JSON (*.json)|*.json"}
-'                If ofd.ShowDialog() = DialogResult.OK Then
-'                    Dim store = New TakeOffFileStore(CompositionRoot.Crypto)
-'                    Dim encrypted = ofd.FileName.EndsWith(".takeoff", StringComparison.OrdinalIgnoreCase)
-'                    CurrentLayout = store.Load(ofd.FileName, encrypted:=encrypted)
-'                    _canvas.LoadFromLayout(CurrentLayout)
-'                    CompositionRoot.Logger.Info($"Loaded layout: {CurrentLayout.CanvasId}")
-'                End If
-'            End Using
-'        End Sub
-
-'        Private Sub InitializeComponent()
-
-'        End Sub
-
-'        Private Sub SaveLayout()
-'            Using sfd As New SaveFileDialog With {.Filter = "TakeOff (*.takeoff)|*.takeoff|JSON (*.json)|*.json"}
-'                If sfd.ShowDialog() = DialogResult.OK Then
-'                    Dim store = New TakeOffFileStore(CompositionRoot.Crypto)
-'                    Dim encrypted = sfd.FileName.EndsWith(".takeoff", StringComparison.OrdinalIgnoreCase)
-'                    Dim nonce = New Byte(11) {}
-'                    RandomNumberGenerator.Fill(nonce)
-'                    Dim layout = _canvas.ToLayout()
-'                    store.Save(sfd.FileName, layout, encrypt:=encrypted, nonce:=nonce)
-'                    CompositionRoot.Logger.Info("Layout saved")
-'                End If
-'            End Using
-'        End Sub
-'    End Class
-'End Namespace
-
-
-
-' V10.2 added Copailot comments for documentations
